@@ -79,7 +79,7 @@ public class Shoot : MonoBehaviour {
             nextFire = Time.time + body.GetComponent<Movement>().getFireRate();
             Debug.Log("toto");
             GameObject newBullet = Instantiate(bullet, new Vector3(transform.position.x + LatDirection, transform.position.y + VertDirection, 0), Quaternion.identity) as GameObject;
-            newBullet.GetComponent<Rigidbody>().velocity = new Vector3(LatDirection * 10, VertDirection * 10, 0);
+            newBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(LatDirection * 10, VertDirection * 10, 0);
             //bullet.GetComponent<Bullet>().Constructor(this.GetComponentInParent<Movement>().getRange());
             Destroy(newBullet, body.GetComponent<Movement>().getRange());
 

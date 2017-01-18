@@ -76,13 +76,22 @@ public class Shoot : MonoBehaviour {
 
         if(Time.time > nextFire){
 
-            nextFire = Time.time + body.GetComponent<Movement>().getFireRate();
-            Debug.Log("toto");
+            nextFire = Time.time + GetComponentInParent<Stats>().getFireRate();
             GameObject newBullet = Instantiate(bullet, new Vector3(transform.position.x + LatDirection, transform.position.y + VertDirection, 0), Quaternion.identity) as GameObject;
-            newBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(LatDirection * 10, VertDirection * 10, 0);
-            //bullet.GetComponent<Bullet>().Constructor(this.GetComponentInParent<Movement>().getRange());
-            Destroy(newBullet, body.GetComponent<Movement>().getRange());
+            newBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(LatDirection * 10, VertDirection * 10, 0) * Time.deltaTime * GetComponentInParent<Stats>().getBulletSpeed();
+            newBullet.GetComponent<BulletScript>().setDmg(GetComponentInParent<Stats>().getDamages());
+            newBullet.GetComponentInParent<BulletScript>().setBulletSpeed(GetComponentInParent<Stats>().getBulletSpeed());
+            Destroy(newBullet, GetComponentInParent<Stats>().getRange());
 
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.transform.tag == "enemy")
+        {
+
+            GetComponentInParent<Stats>().setHP(GetComponentInParent<Stats>().getHP() - 15);
         }
     }
 }

@@ -3,12 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
-    int hp;
-    float speed;
-    float fireRate;
-    int bulletSpeed;
-    float range;
-    int damages;
+
 
     float translateVert;
     float translateLat;
@@ -21,10 +16,7 @@ public class Movement : MonoBehaviour {
 
 
 
-        hp = 100;
-        speed = 5;
-        range = 0.5f;
-        fireRate = 0.5f;
+
 
         m_animator = GetComponent<Animator>();
 
@@ -33,8 +25,8 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        translateLat = Input.GetAxis("Horizontal") * speed;
-        translateVert = Input.GetAxis("Vertical") * speed;
+        translateLat = Input.GetAxis("Horizontal") * GetComponentInParent<Stats>().getSpeed();
+        translateVert = Input.GetAxis("Vertical") * GetComponentInParent<Stats>().getSpeed();
 
 
 
@@ -45,12 +37,5 @@ public class Movement : MonoBehaviour {
 
 	}
 
-    public float getRange()
-    {
-        return this.range;
-    }
 
-    public float getFireRate(){
-      return this.fireRate;
-    }
 }

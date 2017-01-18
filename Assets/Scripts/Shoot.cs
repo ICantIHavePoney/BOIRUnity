@@ -30,40 +30,78 @@ public class Shoot : MonoBehaviour {
         transform.position = new Vector3(body.transform.position.x, body.transform.position.y + 0.55f, body.transform.position.z - 0.01f);
 
 
+        if (!stats.getDiagonale())
+        {
+            if (Input.GetKey("left"))
+            {
+                isShooting = true;
+                LatDirection = -1f;
+                VertDirection = 0;
+                shoot();
+            }
+            else if (Input.GetKey("up"))
+            {
+                isShooting = true;
+                VertDirection = 1f;
+                LatDirection = 0;
+                shoot();
+            }
+            else if (Input.GetKey("right"))
+            {
+                isShooting = true;
+                LatDirection = 1f;
+                VertDirection = 0;
+                shoot();
+            }
+            else if (Input.GetKey("down"))
+            {
+                isShooting = true;
+                VertDirection = -1f;
+                LatDirection = 0;
+                shoot();
+            }
+            else
+            {
+                isShooting = false;
+                LatDirection = Input.GetAxis("Horizontal");
+                VertDirection = Input.GetAxis("Vertical");
+            }
+        }
+        if (stats.getDiagonale())
+        {
+            if (Input.GetKey("left") && !Input.GetKey("right"))
+            {
+                isShooting = true;
+                LatDirection = -1f;
+                shoot();
+            }
+            else if (Input.GetKey("right") && !Input.GetKey("left"))
+            {
+                isShooting = true;
+                LatDirection = 1f;
+                shoot();
+            }
+            else
+            {
+                LatDirection = Input.GetAxis("Horizontal");
+            }
 
-        if (Input.GetKey("left"))
-        {
-            isShooting = true;
-            LatDirection = -1f;
-            VertDirection = 0;
-            shoot();
-        }
-        else if (Input.GetKey("up"))
-        {
-            isShooting = true;
-            VertDirection = 1f;
-            LatDirection = 0;
-                    shoot();
-        }
-        else if (Input.GetKey("right"))
-        {
-            isShooting = true;
-            LatDirection = 1f;
-            VertDirection = 0;
-                    shoot();
-        }
-        else if (Input.GetKey("down"))
-        {
-            isShooting = true;
-            VertDirection = -1f;
-            LatDirection = 0;
-            shoot();
-        }
-        else
-        {
-            isShooting = false;
-            LatDirection = Input.GetAxis("Horizontal");
-            VertDirection = Input.GetAxis("Vertical");
+            if (Input.GetKey("up") && !Input.GetKey("down"))
+            {
+                isShooting = true;
+                VertDirection = 1f;
+                shoot();
+            }
+            else if (Input.GetKey("down") && !Input.GetKey("up"))
+            {
+                isShooting = true;
+                VertDirection = -1f;
+                shoot();
+            }
+            else
+            {
+                VertDirection = Input.GetAxis("Vertical");
+            }
         }
 
         m_animator.SetBool("isShooting", isShooting);

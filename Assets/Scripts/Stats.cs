@@ -3,12 +3,14 @@ using System.Collections;
 
 public class Stats : MonoBehaviour {
 
-    public int hp;
-    float speed;
-    float fireRate;
-    public int bulletSpeed;
-    float range;
-    int damages;
+     int hp;
+     float speed;
+     float fireRate;
+     int bulletSpeed;
+     float range;
+     int damages;
+    bool homing;
+    bool diagonale;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +25,7 @@ public class Stats : MonoBehaviour {
         fireRate = 0.5f;
         damages = 30;
         bulletSpeed = 500;
+        diagonale = true;
     }
 
     // Update is called once per frame
@@ -59,6 +62,16 @@ public class Stats : MonoBehaviour {
     {
         return this.hp;
     }
+
+    public bool getHoming()
+    {
+        return this.homing;
+    }
+    public bool getDiagonale()
+    {
+        return this.diagonale;
+    }
+
 
     public void setHP(int HP)
     {

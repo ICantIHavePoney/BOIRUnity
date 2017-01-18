@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour {
 
     public bool alive;
 
-    int HP;
+    public int HP;
 
     Animator m_animator;
 
@@ -15,7 +15,6 @@ public class EnemyScript : MonoBehaviour {
 
         alive = true;
 
-        HP = 25;
 
 
         m_animator = GetComponent<Animator>();

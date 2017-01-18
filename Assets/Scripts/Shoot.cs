@@ -24,7 +24,7 @@ public class Shoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        transform.position = new Vector3(body.transform.position.x, body.transform.position.y+ 0.55f, body.transform.position.z - 0.01f);
+        transform.position = new Vector3(body.transform.position.x, body.transform.position.y + 0.55f, body.transform.position.z - 0.01f);
 
 
 
@@ -88,7 +88,7 @@ public class Shoot : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.transform.tag == "enemy")
+        if(other.transform.tag == "Enemy")
         {
 
             GetComponentInParent<Stats>().setHP(GetComponentInParent<Stats>().getHP() - 15);

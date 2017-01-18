@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Stats : MonoBehaviour {
 
-    int hp;
+    public int hp;
     float speed;
     float fireRate;
     int bulletSpeed;

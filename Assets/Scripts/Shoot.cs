@@ -13,12 +13,15 @@ public class Shoot : MonoBehaviour {
 
     float nextFire;
 
+    Stats stats;
+
     Animator m_animator;
 
 	// Use this for initialization
 	void Start () {
         m_animator = GetComponent<Animator>();
         isShooting = false;
+        stats = GetComponentInParent<Stats>();
     }
 
 	// Update is called once per frame
@@ -76,12 +79,12 @@ public class Shoot : MonoBehaviour {
 
         if(Time.time > nextFire){
 
-            nextFire = Time.time + GetComponentInParent<Stats>().getFireRate();
+            nextFire = Time.time + stats.getFireRate();
             GameObject newBullet = Instantiate(bullet, new Vector3(transform.position.x + LatDirection, transform.position.y + VertDirection, 0), Quaternion.identity) as GameObject;
-            newBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(LatDirection * 10, VertDirection * 10, 0) * Time.deltaTime * GetComponentInParent<Stats>().getBulletSpeed();
-            newBullet.GetComponent<BulletScript>().setDmg(GetComponentInParent<Stats>().getDamages());
-            newBullet.GetComponentInParent<BulletScript>().setBulletSpeed(GetComponentInParent<Stats>().getBulletSpeed());
-            Destroy(newBullet, GetComponentInParent<Stats>().getRange());
+            newBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(LatDirection, VertDirection, 0) * Time.deltaTime * stats.getBulletSpeed();
+            newBullet.GetComponent<BulletScript>().setDmg(stats.getDamages());
+            newBullet.GetComponent<BulletScript>().setBulletSpeed(stats.getBulletSpeed());
+            Destroy(newBullet, stats.getRange());
 
         }
     }
@@ -91,7 +94,7 @@ public class Shoot : MonoBehaviour {
         if(other.transform.tag == "Enemy")
         {
 
-            GetComponentInParent<Stats>().setHP(GetComponentInParent<Stats>().getHP() - 15);
+            stats.setHP(stats.getHP() - 15);
         }
     }
 }

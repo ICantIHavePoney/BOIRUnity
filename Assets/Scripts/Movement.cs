@@ -10,13 +10,12 @@ public class Movement : MonoBehaviour {
 
     Animator m_animator;
 
+    float speed;
 
 	// Use this for initialization
 	void Start () {
 
-
-
-
+        speed = GetComponentInParent<Stats>().getSpeed();
 
         m_animator = GetComponent<Animator>();
 
@@ -25,8 +24,8 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        translateLat = Input.GetAxis("Horizontal") * GetComponentInParent<Stats>().getSpeed();
-        translateVert = Input.GetAxis("Vertical") * GetComponentInParent<Stats>().getSpeed();
+        translateLat = Input.GetAxis("Horizontal") * speed;
+        translateVert = Input.GetAxis("Vertical") * speed;
 
 
 

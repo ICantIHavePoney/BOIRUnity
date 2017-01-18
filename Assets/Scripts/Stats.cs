@@ -6,7 +6,7 @@ public class Stats : MonoBehaviour {
     public int hp;
     float speed;
     float fireRate;
-    int bulletSpeed;
+    public int bulletSpeed;
     float range;
     int damages;
 
@@ -22,7 +22,7 @@ public class Stats : MonoBehaviour {
         range = 1;
         fireRate = 0.5f;
         damages = 30;
-        bulletSpeed = 50;
+        bulletSpeed = 500;
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using System.Collections;
 public class BulletScript : MonoBehaviour {
 
     int dmg;
-    GameObject Target;
+    public GameObject Target;
     int bulletSpeed;
 
     bool homing;
@@ -20,8 +20,10 @@ public class BulletScript : MonoBehaviour {
 	void Update () {
         if (Target != null && Target.GetComponent<EnemyScript>().getAlive())
         {
-            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, bulletSpeed * Time.deltaTime * 0.25f);            
+            var velo = GetComponent<Rigidbody2D>().velocity;
+            velo.Set(Target.transform.position.x - transform.position.x, Target.transform.position.y - transform.position.y);
+            velo.Normalize();
+            GetComponent<Rigidbody2D>().velocity = velo * Time.deltaTime * bulletSpeed;
         }
 	}
 
